@@ -5,23 +5,14 @@ https://github.com/JavierSegoviaCordoba/semver-gradle-plugin/issues/175
 Run
 
 ```
-./gradlew clean build
+./gradlew printSemver
 ```
 
 Should be something like:
 
 ```
 > Task :printSemver
-semver for semver-gradle-plugin-playground: 0.1.0.0+2767874+DIRTY
-
-> Task :sub1:printSemver
-semver for sub1: 0.1.0.0+2767874+DIRTY
-
-> Task :sub2:printSemver
-semver for sub2: 0.1.0.0+2767874+DIRTY
-
-BUILD SUCCESSFUL in 707ms
-9 actionable tasks: 7 executed, 2 from cache
+semver for semver-repro-175: 1.0.0
 ```
 
 Now use:

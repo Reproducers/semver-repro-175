@@ -1,0 +1,7 @@
+plugins {
+    id("com.javiersc.semver") version "0.7.1"
+}
+
+semver {
+    mapVersion { "1.0.0" }
+}
