@@ -1,8 +1,16 @@
+import com.javiersc.gradle.version.GradleVersion
+import com.javiersc.semver.project.gradle.plugin.SemverExtension
+import com.javiersc.semver.project.gradle.plugin.SemverExtension.VersionMapper
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
     }
+}
+
+plugins {
+    id("com.javiersc.semver") version "0.7.1"
 }
 
 dependencyResolutionManagement {
@@ -11,3 +19,27 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+class Map {
+    static per = new VersionMapper() {
+        @Override
+        String map(GradleVersion gradleVersion) {
+            "1.0.0"
+        }
+    }
+}
+
+gradle.afterProject { project ->
+    println("Project: ${project.name}")
+    project.pluginManager.withPlugin('com.javiersc.semver') {
+        println("Plugin: com.javiersc.semver is applied")
+        project.extensions.configure(SemverExtension) { semver ->
+            semver.mapVersion Map.per
+        }
+    }
+}
+
+include(
+        ":lib-1",
+        ":lib-2",
+)
